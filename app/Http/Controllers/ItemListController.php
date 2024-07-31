@@ -16,6 +16,14 @@ class ItemListController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        $cari = $request->cari;
+        $datas = ItemList::where('nama', 'like', "%".$cari."%")->paginate(6);
+        return view('pages.indexClientSearch', ['datas' => $datas]);
+    }
+
+
     public function create()
     {
         // $users = User::find($id); BISA DIAMBIL LANGSUNG PAKE Auth::user()
@@ -27,12 +35,6 @@ class ItemListController extends Controller
     {
         ItemList::create($request->all());
         return redirect('/items');
-    }
-
-
-    public function show(ItemList $itemList)
-    {
-        //
     }
 
 
