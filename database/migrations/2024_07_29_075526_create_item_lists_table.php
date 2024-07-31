@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('detail_info');
             $table->string('deskripsi');
             $table->string('lokasi');
-            $table->integer('id_owner');
+            $table->string('id_owner', 36)->change();
             $table->timestamps();
         });
     }
