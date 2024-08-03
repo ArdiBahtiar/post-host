@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('/items', [ItemListController::class, 'index']);
 Route::get('/items/search', [ItemListController::class, 'search']);
 Route::get('/items/create', [ItemListController::class, 'create']);
+Route::get('/items/{datas}', [ItemListController::class, 'focus']);
 Route::post('/items', [ItemListController::class, 'store']);
 
 

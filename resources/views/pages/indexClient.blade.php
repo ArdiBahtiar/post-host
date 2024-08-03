@@ -20,7 +20,7 @@
                     <h5 class="card-title">{{ $data->nama }}</h5>
                     <p class="card-text">{{ $data->deskripsi }}</p>
                     <p class="card-text">{{ $data->harga }} /bulan</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{{ url('items/' . $data->id) }}" class="btn btn-primary">Lihat Postingan</a>
                 </div>
             </div>
         @endforeach

@@ -38,6 +38,14 @@ class ItemListController extends Controller
     }
 
 
+    public function focus($id)
+    {
+        $list = ItemList::find($id);
+        $user = User::where('id_owner', '=', $list->id_owner)->first();
+        return view('pages.itemFocus', ['list' => $list, 'user' => $user]);
+    }
+
+
     public function edit(ItemList $itemList)
     {
         //
