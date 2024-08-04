@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_lists', function (Blueprint $table) {
+        Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->integer('harga');
-            $table->string('detail_info');
-            $table->string('deskripsi');
-            $table->string('lokasi');
-            // $table->string('id_owner', 36)->change();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('itemlist_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('item_lists');
+        Schema::dropIfExists('bookmarks');
     }
 };

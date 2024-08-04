@@ -33,7 +33,7 @@
                 <input type="url" name="lokasi" class="form-control" required>
             </div>
 
-            <input type="hidden" name="id_owner" value="{{ Auth::user()->id_owner }}">
+            <input type="hidden" name="id_owner" value="{{ Auth::user()->id }}">
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Create Item</button>

@@ -17,4 +17,14 @@ class ItemList extends Model
         'lokasi',
         'id_owner',
     ];
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
+    public function bookmarkedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'bookmarks');
+    }
 }

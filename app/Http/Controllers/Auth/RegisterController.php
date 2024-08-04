@@ -64,13 +64,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $uuid = Str::uuid()->toString();
+        // $uuid = Str::uuid()->toString();
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'id_owner' => $uuid,
+            // 'id_owner' => $uuid,
         ]);
     }
 }

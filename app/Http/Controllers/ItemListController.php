@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ItemList;
 use App\Models\User;
+use App\Models\Bookmark;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 

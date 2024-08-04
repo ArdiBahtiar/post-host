@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemListController;
 
@@ -24,6 +25,9 @@ Route::get('/items/create', [ItemListController::class, 'create']);
 Route::get('/items/{datas}', [ItemListController::class, 'focus']);
 Route::post('/items', [ItemListController::class, 'store']);
 
+Route::post('/items/{list}/bookmark', [BookmarkController::class, 'save'])->name('bookmarks.save');
+Route::delete('/items/{list}/bookmark', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
+Route::get('/bookmarked', [BookmarkController::class, 'bookmarked']);
 
 Auth::routes();
 

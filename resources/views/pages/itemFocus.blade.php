@@ -31,5 +31,18 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <form action="{{ route('bookmarks.save', $list) }}" method="POST">
+            @csrf
+            <button type="submit">Bookmark</button>
+        </form>
+        
+        <form action="{{ route('bookmarks.destroy', $list) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Remove Bookmark</button>
+        </form>
+    </div>
 </div>
 @endsection
