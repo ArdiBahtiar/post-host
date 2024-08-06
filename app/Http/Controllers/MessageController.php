@@ -9,7 +9,8 @@ class MessageController extends Controller
 {
     public function chatIndex()
     {
-        return Message::with('user')->get();
+        // return Message::with('user')->get();
+        return view('pages.chat');
     }
 
     public function store(Request $request)
