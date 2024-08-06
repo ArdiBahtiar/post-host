@@ -51,6 +51,11 @@ class User extends Authenticatable
 
     public function bookmarkedPosts()
     {
-        return $this->belongsToMany(ItemList::class, 'bookmarks');
+        return $this->belongsToMany(ItemList::class, 'bookmarks', 'user_id', 'item_list_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }

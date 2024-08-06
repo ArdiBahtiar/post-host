@@ -15,7 +15,7 @@ class ItemList extends Model
         'detail_info',
         'deskripsi',
         'lokasi',
-        'id_owner',
+        'user_id',
     ];
 
     public function bookmarks()
@@ -25,6 +25,6 @@ class ItemList extends Model
 
     public function bookmarkedByUsers()
     {
-        return $this->belongsToMany(User::class, 'bookmarks');
+        return $this->belongsToMany(User::class, 'bookmarks', 'item_list_id', 'user_id');
     }
 }

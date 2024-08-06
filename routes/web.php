@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\BookmarkController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemListController;
+use App\Http\Controllers\MessageController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::post('/items', [ItemListController::class, 'store']);
 Route::post('/items/{list}/bookmark', [BookmarkController::class, 'save'])->name('bookmarks.save');
 Route::delete('/items/{list}/bookmark', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 Route::get('/bookmarked', [BookmarkController::class, 'bookmarked']);
+
+Route::get('/messages', [MessageController::class, 'chatIndex']);
+Route::post('/messages', [MessageController::class, 'store']);
 
 Auth::routes();
 
