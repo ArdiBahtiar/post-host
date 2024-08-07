@@ -5,6 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class ChatComponent extends Component
 {
@@ -14,16 +16,9 @@ class ChatComponent extends Component
     protected $rules = [
         'message' => 'required|string|max:255',
     ];
-    // public function rules()
-    // {
-    //     return [
-    //         'message' => 'required|string|max:255',
-    //     ];
-    // }
 
     public function mount()
     {
-        // $this->rules;
         $this->messages = Message::with('user')->latest()->get();
     }
 
