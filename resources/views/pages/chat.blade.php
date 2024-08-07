@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <livewire:chat-component /> --}}
     <div>
-        @livewire('chat')
+        <livewire:chat :conversationId="$conversationId" />
+        {{-- @livewire('chat') --}}
     </div>
 @endsection

@@ -30,7 +30,7 @@ Route::post('/items/{list}/bookmark', [BookmarkController::class, 'save'])->name
 Route::delete('/items/{list}/bookmark', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
 Route::get('/bookmarked', [BookmarkController::class, 'bookmarked']);
 
-Route::get('/chat', [MessageController::class, 'chatIndex'])->middleware(['auth']);
+Route::get('/chat/{conversation}', [MessageController::class, 'chatIndex'])->middleware(['auth']);
 Route::post('/messages', [MessageController::class, 'store'])->middleware(['auth']);
 
 Auth::routes();
