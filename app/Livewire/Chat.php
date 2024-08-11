@@ -17,6 +17,8 @@ class Chat extends Component
 
     public function mount($conversationId)
     {
+        // dd($this->messages);
+        
         $this->user = Auth::user();
         $this->conversationId = $conversationId;
         
@@ -25,7 +27,7 @@ class Chat extends Component
         {
             abort(403, 'Lu itu ngga diajak :( ');
         }
-
+        
         $this->messages = Message::where('conversation_id', $conversationId)->with('user')->get();
     }
 
@@ -49,7 +51,11 @@ class Chat extends Component
 
     public function render()
     {
-        $this->messages = Message::with('user')->get();
+        // $this->messages = Message::all();                    lazy loading
+        // $this->messages = Message::with('user')->get();      eager loading
+        $this->messages = Message::with('user')->whereHas('conversation', function($query) {
+            $query->where('id', $this->conversationId);
+        })->get();
         
         return view('livewire.chat');
     }

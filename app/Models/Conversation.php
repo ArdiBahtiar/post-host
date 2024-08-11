@@ -9,7 +9,7 @@ class Conversation extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $fillable = [
         'user_one_id',

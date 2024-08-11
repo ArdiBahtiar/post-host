@@ -35,10 +35,30 @@ class MessageController extends Controller
     {
         $list = ItemList::find($id);
         // dd($list);
-        $conversation = Conversation::firstOrCreate([
-            'user_one_id' => Auth::id(),
-            'user_two_id' => $list->user_id,
-        ]);       
+        // $conversation = Conversation::firstOrCreate([
+        //     'user_one_id' => Auth::id(),
+        //     'user_two_id' => $list->user_id,
+        // ]); 
+        
+
+        $authId = Auth::id();
+        $listUserId = $list->user_id;
+        $conversation = Conversation::where(function ($query) use ($authId, $listUserId) {
+            $query->where('user_one_id', $authId)
+                  ->where('user_two_id', $listUserId);
+        })->orWhere(function ($query) use ($authId, $listUserId) {
+            $query->where('user_one_id', $listUserId)
+                  ->where('user_two_id', $authId);
+        })->first();
+    
+        if (!$conversation) {
+            $conversation = Conversation::create([
+                'user_one_id' => $authId,
+                'user_two_id' => $listUserId,
+            ]);
+        }
+
+
 
         return redirect()->route('chat.show', ['conversation' => $conversation->id]);
         // return redirect('chat/' . $conversation->id);
