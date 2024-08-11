@@ -33,16 +33,27 @@
     </div>
 
     <div class="row">
-        <form action="{{ route('bookmarks.save', $list) }}" method="POST">
-            @csrf
-            <button type="submit">Bookmark</button>
-        </form>
+        <div class="col">
+            <form action="{{ route('bookmarks.save', $list) }}" method="POST">
+                @csrf
+                <button type="submit">Bookmark</button>
+            </form>
+        </div>
         
-        <form action="{{ route('bookmarks.destroy', $list) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Remove Bookmark</button>
-        </form>
+        <div class="col">
+            <form action="{{ route('bookmarks.destroy', $list) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Remove Bookmark</button>
+            </form>
+        </div>
+
+        <div class="col">
+            <form action="{{ route('chat.initiate', $list->id) }}" method="GET">
+                @csrf
+                <button type="submit">Chat Penjual</button>
+            </form>
+        </div>
     </div>
 </div>
 @endsection

@@ -43,6 +43,7 @@ class ItemListController extends Controller
     {
         $list = ItemList::find($id);
         $user = User::where('id', '=', $list->user_id)->first();
+        // dd($list);
         return view('pages.itemFocus', ['list' => $list, 'user' => $user]);
     }
 

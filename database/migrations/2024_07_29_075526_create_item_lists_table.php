@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('detail_info');
             $table->string('deskripsi');
             $table->string('lokasi');
-            // $table->string('id_owner', 36)->change();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

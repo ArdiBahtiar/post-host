@@ -9,6 +9,8 @@ class ItemList extends Model
 {
     use HasFactory;
 
+    // public $preventsLazyLoading = true;
+
     protected $fillable = [
         'nama',
         'harga',

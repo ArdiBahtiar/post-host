@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\Conversation;
+use App\Models\ItemList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    // public function chatIndex()
-    // {
-    //     return view('pages.chat');
-    // }
-
     public function chatIndex(Conversation $conversation)
     {
+        // dd($id);
         if(!in_array(Auth::id(), [$conversation->user_one_id, $conversation->user_two_id]))
         {
             abort(403, 'Lu itu ngga diajak :( ');
         }
+
 
         return view('pages.chat', ['conversationId' => $conversation->id]);
     }
@@ -31,5 +29,18 @@ class MessageController extends Controller
         $message->save();
 
         return response()->json($message, 201);
+    }
+
+    public function initiate($id)
+    {
+        $list = ItemList::find($id);
+        // dd($list);
+        $conversation = Conversation::firstOrCreate([
+            'user_one_id' => Auth::id(),
+            'user_two_id' => $list->user_id,
+        ]);       
+
+        return redirect()->route('chat.show', ['conversation' => $conversation->id]);
+        // return redirect('chat/' . $conversation->id);
     }
 }
